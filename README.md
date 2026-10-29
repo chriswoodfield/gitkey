@@ -31,6 +31,9 @@ git() {
   esac
 }
 ```
+
+4. Reload your .rc file (.bashrc or .zshrc)
+
 The following env variables can be overriden:
 ```
 GITKEY_SSH_DIR  - location of ssh keys (default: ~/.ssh)
