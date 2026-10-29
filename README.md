@@ -5,6 +5,8 @@ Instructions:
 1. Create ED25519 ssh keys for each of your github accounts, named
 id_ed25519_github.com_\<username\>
 
+2. On MacOS, you can run "ssh-add \<keyname\> --apple-use-keychain" to store the key's passphrases, eliminating the need to enter them on future load operations.
+
 2. Create directories for each of these accounts. 
 ~/git/github.com/\<username\>
 

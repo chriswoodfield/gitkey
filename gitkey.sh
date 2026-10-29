@@ -2,6 +2,8 @@
 # ~/git/github.com/chriswoodfield/gitkey/gitkey.sh
 set -euo pipefail
 
+echo "gitkey.sh starting"
+
 GITKEY_CONFIG_FILE="${GITKEY_CONFIG_FILE:-${HOME}/.gitkey_config}"
 GITKEY_SSH_DIR="${GITKEY_SSH_DIR:-${HOME}/.ssh}"
 GITKEY_BASE_DIR="${GITKEY_BASE_DIR:-${HOME}/git/github.com}"
@@ -19,6 +21,8 @@ if [[ "${current_pwd}" == "${GITKEY_BASE_DIR}/"* ]]; then
   matched_user="${rel_path%%/*}"
 
   key_file="${GITKEY_SSH_DIR}/id_ed25519_github.com_${matched_user}"
+
+  echo "gitkey is using ${key_file}."
 
   # 3. Check for matching SSH key file
   if [[ ! -f "${key_file}" && ! -f "${key_file}.pub" ]]; then
