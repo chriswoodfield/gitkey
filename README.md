@@ -1,18 +1,22 @@
 # gitkey - shell alias to load correct key for github operations
 
-Instructions:
+This script, when called as a shell function, allows for the automatic management of multiple ssh key-based Github accounts. If you organize your repos by account, it will match the correct key (with the specified file pattern) in your $HOME/.ssh directory with the directory you're in, and use that key to authenticate with Github.
+
+Note that this was written on a Mac, and takes advantage of the --apple-use-keychain flag, which retrieves your ssh key's passphrase from the keychain. This flag should be removed when being used on MacOS.
+
+## Setup Instructions:
 
 1. Create ED25519 ssh keys for each of your github accounts, named
 id_ed25519_github.com_\<username\>
 
 2. On MacOS, you can run "ssh-add \<keyname\> --apple-use-keychain" to store the key's passphrases, eliminating the need to enter them on future load operations.
 
-2. Create directories for each of these accounts. 
+3. Create directories for each of these accounts. 
 ~/git/github.com/\<username\>
 
-3. Move the script to its intended location (the function below assumes ~/bin/gitkey.sh, change if needed).
+4. Move the script to its intended location (the function below assumes ~/bin/gitkey.sh, change if needed).
 
-3. Add the following function to your .bashrc or .zshrc file. This will catch remote git functions, while allowing other operations to proeed normally.
+5. Add the following function to your .bashrc or .zshrc file. This will catch remote git functions, while allowing other operations to proeed normally.
 ```
 # Wrapper for git to route remote operations through gitkey
 
