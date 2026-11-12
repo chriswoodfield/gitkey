@@ -16,16 +16,17 @@ id_ed25519_github.com_\<username\>. bash and zsh syntax differs here.
 
 *__bash:__*
 ```
-for account in ${GH_ACCOUNTS}; do ssh-add -t ed25519 ~/.ssh/id_ed25519_github.com_${account}; done
+for account in ${GH_ACCOUNTS}; do ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_github.com_${account}; done
 ```
 *__zsh:__*
 ```
-for account in ${=GH_ACCOUNTS}; do ssh-add -t ed25519 ~/.ssh/id_ed25519_github.com_${account}; done
+for account in ${=GH_ACCOUNTS}; do ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519_github.com_${account}; done
 ```
+As usual, passphrases protecting your private keys are optional.
 
 3. Add the public keys for these accounts to your corresponding Github accounts.
 
-4. *(MacOS only)*: run "ssh-add \<keyname\> --apple-use-keychain" to store echo key's passphrases, eliminating the need to enter them on future add operations. (NOTE: if Linux or Windows has similar flags for keychain support, please let me know). Without this, you will be prompted 
+4. *(MacOS only)*: If you created passphrases for your keys, run "ssh-add \<keyname\> --apple-use-keychain" to store each key's passphrases, eliminating the need to enter them on future add operations. (NOTE: if Linux or Windows has similar flags for keychain support, please let me know). Without this, you will be prompted for the passphrase upon every remote git operation where a different key is loaded.
 
 ```
 for key in `ls ~/.ssh/ | grep id_ed25519_github.com | grep -v .pub`; do ssh-add ~/.ssh/${key} --apple-use-keychain; done
