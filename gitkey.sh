@@ -51,9 +51,8 @@ if [[ "${current_pwd}" == "${GITKEY_BASE_DIR}/"* ]]; then
 
   # Check for matching SSH key file
   if [[ ! -f "${key_file}" && ! -f "${key_file}.pub" ]]; then
-    printf "gitkey error: No SSH key found for '%s'\n" "${matched_user}" >&2
-    printf "Expected: %s or %s.pub\n" "${key_file}" "${key_file}" >&2
-    exit 1
+    printf "No SSH key found for '%s'\n" "${matched_user}, using default keys" >&2
+    exec git "$@"; exit $?
   fi
 
   # Check cache for expected SHA256; generate and append if absent
